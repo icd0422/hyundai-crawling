@@ -21,9 +21,9 @@ public class ApplicationException extends RuntimeException {
         this.reason = reason;
     }
 
-    public static class FetchHtmlTimeoutException extends ApplicationException {
-        public FetchHtmlTimeoutException() {
-            super("FETCH_HTML_TIME_OUT", "Html 조회 시간이 초과되었습니다.");
+    public static class FetchHtmlMalformedURLException extends ApplicationException {
+        public FetchHtmlMalformedURLException() {
+            super("FETCH_HTML_MALFORMED_URL", "지원하지 않는 url 형식입니다.");
         }
     }
 }
