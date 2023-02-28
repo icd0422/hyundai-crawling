@@ -18,12 +18,12 @@ merge 후
 ## API Spec 
 http://localhost:8080
 
-###request
+### request
 Get Method
 
     /api/crawling/merged-result
 
-###response
+### response
 Json
 
     {
@@ -33,5 +33,5 @@ Json
 
 ## Library
 - jsoup : 1.13.1
-- caffeine cache : 3.1.1
+- ehcache cache : 3.6.2
 - lombok
