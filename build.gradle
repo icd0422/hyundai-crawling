@@ -20,7 +20,12 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation("org.springframework.boot:spring-boot-starter-cache")
+
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
+
+    implementation("javax.cache:cache-api:1.1.0")
+    implementation("org.ehcache:ehcache:3.6.2")
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
