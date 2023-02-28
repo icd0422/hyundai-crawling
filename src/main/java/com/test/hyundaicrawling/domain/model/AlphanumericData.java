@@ -1,41 +1,43 @@
 package com.test.hyundaicrawling.domain.model;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 public class AlphanumericData {
 
-    SortedSet<Character> upperSet;
-    SortedSet<Character> lowerSet;
-    SortedSet<Character> numberSet;
+    Set<Character> upperSet;
+    Set<Character> lowerSet;
+    SortedSet<Character> numberSortedSet;
 
     public AlphanumericData(List<String> stringDataList) {
-        this.upperSet = new TreeSet<>();
-        this.lowerSet = new TreeSet<>();
-        this.numberSet = new TreeSet<>();
+        this.upperSet = new HashSet<>();
+        this.lowerSet = new HashSet<>();
+        this.numberSortedSet = new TreeSet<>();
 
         for (String stringData : stringDataList) {
             for (char c : stringData.toCharArray()) {
                 if (isUpperCase(c)) upperSet.add(c);
                 else if (isLowerCase(c)) lowerSet.add(c);
-                else if (isDigit(c)) numberSet.add(c);
+                else if (isDigit(c)) numberSortedSet.add(c);
             }
         }
     }
 
     public String merged() {
         StringBuilder builder = new StringBuilder();
+        Iterator<Character> numberIterator = numberSortedSet.iterator();
 
-        Iterator<Character> upperIterator = upperSet.iterator();
-        Iterator<Character> lowerIterator = lowerSet.iterator();
-        Iterator<Character> numberIterator = numberSet.iterator();
+        for (char c = 'A'; c <= 'Z'; c++) {
+            if (upperSet.contains(c)) builder.append(c);
 
-        while (upperIterator.hasNext() || lowerIterator.hasNext() || numberIterator.hasNext()) {
-            if (upperIterator.hasNext()) builder.append(upperIterator.next());
-            if (lowerIterator.hasNext()) builder.append(lowerIterator.next());
-            if (numberIterator.hasNext()) builder.append(numberIterator.next());
+            char lowerChar = Character.toLowerCase(c);
+            if (lowerSet.contains(lowerChar)) builder.append(lowerChar);
+
+            if (numberIterator.hasNext() &&
+                    (upperSet.contains(c) || lowerSet.contains(lowerChar))) builder.append(numberIterator.next());
+        }
+
+        while (numberIterator.hasNext()) {
+            builder.append(numberIterator.next());
         }
 
         return builder.toString();
