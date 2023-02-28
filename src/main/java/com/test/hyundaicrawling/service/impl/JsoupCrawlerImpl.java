@@ -22,9 +22,7 @@ public class JsoupCrawlerImpl implements ExternalCrawler {
     private ExecutorService externalCrawlerExecutor;
 
     private static final int CRAWLER_THREAD_POOL_COUNT = 100;
-
     private static final int CRAWLER_MAX_TIME_OUT_MILLIS = 10000;
-
     private static final int CRAWLER_MAX_RETRY_COUNT = 3;
 
     @PostConstruct
